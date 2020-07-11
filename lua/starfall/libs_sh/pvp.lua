@@ -17,6 +17,16 @@ local function getPly( this )
     end
 end
 
+local function inFaction( ply )
+    local id = ply:GetFactionID()
+
+    if not id or id == "0" then
+        return false
+    end
+
+    return true
+end
+
 function pvp_library.getPvpers()
     local pvpers = {}
 
@@ -97,13 +107,13 @@ end
 function pvp_library.isPlayerInFaction( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):IsInFaction()
+    return inFaction( getPly( ply ) )
 end
 
 function player_methods:isInFaction()
     checktype( self, ply_meta )
 
-    return getPly( self ):IsInFaction()
+    return inFaction( getPly( self ) )
 end
 
 end
