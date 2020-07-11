@@ -18,7 +18,7 @@ local function getPly( this )
 end
 
 local function inFaction( ply )
-    local id = ply:GetFactionID()
+    local id = ply:GetNWString( "FactionID", nil )
 
     if not id or id == "0" then
         return false
