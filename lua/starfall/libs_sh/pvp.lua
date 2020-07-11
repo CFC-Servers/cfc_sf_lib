@@ -43,65 +43,65 @@ end
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return ply:GetNWBool( "CFC_PvP_Mode", false )
+    return getply( ply ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return self:GetNWBool( "CFC_PvP_Mode", false )
+    return getply( self ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 -- isInBuild
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return not ply:GetNWBool( "CFC_PvP_Mode", false )
+    return not getply( ply ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return not self:GetNWBool( "CFC_PvP_Mode", false )
+    return not getply( self ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 -- factionID
 function pvp_library.getFactionID( ply )
     checktype( ply, ply_meta )
 
-    return ply:GetFactionID()
+    return getply( ply ):GetFactionID()
 end
 
 function player_methods:getFactionID()
     checktype( self, ply_meta )
 
-    return self:GetFactionID()
+    return getply( self ):GetFactionID()
 end
 
 -- factionRank
 function pvp_library.getFactionRank( ply )
     checktype( ply, ply_meta )
 
-    return ply:GetFactionRank()
+    return getply( ply ):GetFactionRank()
 end
 
 function player_methods:getFactionRank()
     checktype( self, ply_meta )
 
-    return self:GetFactionRank()
+    return getply( self ):GetFactionRank()
 end
 
 -- isInFaction
 function pvp_library.isInFaction( ply )
     checktype( ply, ply_meta )
 
-    return ply:IsInFaction()
+    return getply( ply ):IsInFaction()
 end
 
 function player_methods:isInFaction()
     checktype( self, ply_meta )
 
-    return self:IsInFaction()
+    return getply( self ):IsInFaction()
 end
 
 end
