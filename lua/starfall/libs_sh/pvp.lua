@@ -81,26 +81,26 @@ end
 function pvp_library.getPlayerFactionID( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):GetFactionID()
+    return getPly( ply ):GetNWString( "FactionID", nil )
 end
 
 function player_methods:getFactionID()
     checktype( self, ply_meta )
 
-    return getPly( self ):GetFactionID()
+    return getPly( self ):GetNWString( "FactionID", nil )
 end
 
 -- factionRank
 function pvp_library.getPlayerFactionRank( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):GetFactionRank()
+    return getPly( ply ):GetNWString( "FactionRank", nil )
 end
 
 function player_methods:getFactionRank()
     checktype( self, ply_meta )
 
-    return getPly( self ):GetFactionRank()
+    return getPly( self ):GetNWString( "FactionRank", nil )
 end
 
 -- isInFaction
