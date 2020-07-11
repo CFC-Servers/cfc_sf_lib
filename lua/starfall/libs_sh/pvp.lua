@@ -1,3 +1,5 @@
+SF.RegisterLibrary( "pvp" )
+
 return function( instance )
 
 local pvp_library = instance.Libraries.pvp
