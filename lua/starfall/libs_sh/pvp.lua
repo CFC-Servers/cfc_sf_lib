@@ -5,7 +5,7 @@ local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 
-local function getply( this )
+local function getPly( this )
     local ent = punwrap( this )
 
     if ent:IsValid() then
@@ -43,65 +43,65 @@ end
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return getply( ply ):GetNWBool( "CFC_PvP_Mode", false )
+    return getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return getply( self ):GetNWBool( "CFC_PvP_Mode", false )
+    return getPly( self ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 -- isInBuild
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return not getply( ply ):GetNWBool( "CFC_PvP_Mode", false )
+    return not getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return not getply( self ):GetNWBool( "CFC_PvP_Mode", false )
+    return not getPly( self ):GetNWBool( "CFC_PvP_Mode", false )
 end
 
 -- factionID
 function pvp_library.getFactionID( ply )
     checktype( ply, ply_meta )
 
-    return getply( ply ):GetFactionID()
+    return getPly( ply ):GetFactionID()
 end
 
 function player_methods:getFactionID()
     checktype( self, ply_meta )
 
-    return getply( self ):GetFactionID()
+    return getPly( self ):GetFactionID()
 end
 
 -- factionRank
 function pvp_library.getFactionRank( ply )
     checktype( ply, ply_meta )
 
-    return getply( ply ):GetFactionRank()
+    return getPly( ply ):GetFactionRank()
 end
 
 function player_methods:getFactionRank()
     checktype( self, ply_meta )
 
-    return getply( self ):GetFactionRank()
+    return getPly( self ):GetFactionRank()
 end
 
 -- isInFaction
 function pvp_library.isInFaction( ply )
     checktype( ply, ply_meta )
 
-    return getply( ply ):IsInFaction()
+    return getPly( ply ):IsInFaction()
 end
 
 function player_methods:isInFaction()
     checktype( self, ply_meta )
 
-    return getply( self ):IsInFaction()
+    return getPly( self ):IsInFaction()
 end
 
 end
