@@ -68,7 +68,7 @@ function player_methods:isInBuild()
 end
 
 -- factionID
-function pvp_library.getFactionID( ply )
+function pvp_library.getPlayerFactionID( ply )
     checktype( ply, ply_meta )
 
     return getPly( ply ):GetFactionID()
@@ -81,7 +81,7 @@ function player_methods:getFactionID()
 end
 
 -- factionRank
-function pvp_library.getFactionRank( ply )
+function pvp_library.getPlayerFactionRank( ply )
     checktype( ply, ply_meta )
 
     return getPly( ply ):GetFactionRank()
@@ -94,7 +94,7 @@ function player_methods:getFactionRank()
 end
 
 -- isInFaction
-function pvp_library.isInFaction( ply )
+function pvp_library.isPlayerInFaction( ply )
     checktype( ply, ply_meta )
 
     return getPly( ply ):IsInFaction()
