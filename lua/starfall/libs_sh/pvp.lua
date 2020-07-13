@@ -17,6 +17,10 @@ local function getPly( this )
     end
 end
 
+local function isInPvp( ply )
+    return getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
+end
+
 local function inFaction( ply )
     local id = ply:GetNWString( "FactionID", nil )
 
@@ -55,26 +59,26 @@ end
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
+    return isInPvp( ply )
 end
 
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return getPly( self ):GetNWBool( "CFC_PvP_Mode", false )
+    return isInPvp( self )
 end
 
 -- isInBuild
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return not getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
+    return not isInPvp( ply )
 end
 
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return not getPly( self ):GetNWBool( "CFC_PvP_Mode", false )
+    return not isInPvp( self )
 end
 
 -- factionID
