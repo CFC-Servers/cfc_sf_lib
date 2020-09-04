@@ -1,3 +1,7 @@
+--- PvP library for getting PvP mode and faction information.
+-- @name pvp
+-- @class library
+-- @libtbl pvp_library
 SF.RegisterLibrary( "pvp" )
 
 return function( instance )
