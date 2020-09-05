@@ -66,7 +66,7 @@ end
 -- isInPvp
 --- Returns true if the player is in Pvp mode, false otherwise.
 -- @param ply Player
--- @return True or False
+-- @return Boolean, is the player in Pvp mode
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
@@ -74,7 +74,7 @@ function pvp_library.playerIsInPvp( ply )
 end
 
 --- Returns true if the player is in Pvp mode, false otherwise.	
--- @return True or False
+-- @return Boolean, is the player in Pvp mode
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
@@ -84,15 +84,15 @@ end
 -- isInBuild
 --- Returns true if the player is in Build mode, false otherwise.
 -- @param ply Player
--- @return True or False
+-- @return Boolean, is the player in Build mode
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
     return not isInPvp( ply )
 end
 
---- Returns true if the player is in Pvp mode, false otherwise.
--- @return True or False
+--- Returns true if the player is in Build mode, false otherwise.
+-- @return Boolean, is the player in Build mode
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
@@ -102,7 +102,7 @@ end
 -- factionID
 --- Returns the player's faction ID.
 -- @param ply Player
--- @return Faction ID as a string.
+-- @return String containing the player's Faction ID
 function pvp_library.getPlayerFactionID( ply )
     checktype( ply, ply_meta )
 
@@ -110,7 +110,7 @@ function pvp_library.getPlayerFactionID( ply )
 end
 
 --- Returns the player's faction ID.
--- @return Faction ID as a string.
+-- @return String containing the player's Faction ID
 function player_methods:getFactionID()
     checktype( self, ply_meta )
 
@@ -120,7 +120,7 @@ end
 -- factionRank
 --- Returns a string of the player's faction rank.
 -- @param ply Player
--- @return Faction rank as a string.
+-- @return String containing the player's faction rank
 function pvp_library.getPlayerFactionRank( ply )
     checktype( ply, ply_meta )
 
@@ -128,7 +128,7 @@ function pvp_library.getPlayerFactionRank( ply )
 end
 
 --- Returns a string of the player's faction rank.
--- @return Faction rank as a string.
+-- @return String containing the player's faction rank
 function player_methods:getFactionRank()
     checktype( self, ply_meta )
 
@@ -138,7 +138,7 @@ end
 -- isInFaction
 --- Returns true if the player is in a faction, false otherwise.
 -- @param ply Player
--- @return True or false
+-- @return Boolean, is the player in a faction
 function pvp_library.isPlayerInFaction( ply )
     checktype( ply, ply_meta )
 
@@ -146,7 +146,7 @@ function pvp_library.isPlayerInFaction( ply )
 end
 
 --- Returns true if the player is in a faction, false otherwise.
--- @return True or false
+-- @return Boolean, is the player in a faction
 function player_methods:isInFaction()
     checktype( self, ply_meta )
 
