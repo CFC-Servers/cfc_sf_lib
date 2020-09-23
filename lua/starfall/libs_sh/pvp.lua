@@ -153,15 +153,4 @@ function player_methods:isInFaction()
     return inFaction( getPly( self ) )
 end
 
---- Gets the slow walking speed of a player. This is when you're using +WALK.
--- @return Slow-walk speed of the player
-function player_methods:getSlowWalkSpeed()
-    if not CanUsePlyCore(instance.player) then SF.Throw("You must be an admin to use this function!") end
-    
-    checktype( self, ply_meta )
-    local ent = getPly( self )
-    
-    return ent:GetSlowWalkSpeed()
-end
-
 end
