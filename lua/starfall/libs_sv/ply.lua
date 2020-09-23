@@ -15,14 +15,14 @@ local function getPly( this )
 
     if ent:IsValid() then
         return ent
-    else
-        SF.Throw( "Player is not valid.", 3 )
     end
+    
+    SF.Throw( "Player is not valid.", 3 )
 end
 
 
-local function canUsePlyCore( play )
-    return play:IsAdmin() or play:IsSuperAdmin()
+local function canUsePlyCore( ply )
+    return ply:IsAdmin() or ply:IsSuperAdmin()
 end
 
 
@@ -178,7 +178,7 @@ end
 -- @param bool HidePopup
 function player_methods:giveAmmo( ammoId, amount, hidePopup )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!" ) end
-    if type(ammoId) ~= "string" and type(ammoId) ~= "number" then SF.Throw("Ammo ID must either be a string or a number!") end
+    if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then SF.Throw( "Ammo ID must either be a string or a number!" ) end
     
     checktype( self, ply_meta )
     local ply = getPly( self )
