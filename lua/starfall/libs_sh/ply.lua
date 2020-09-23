@@ -10,17 +10,17 @@ local builtins_library = instance.env
 
 local function getPly( this )
     local ent = punwrap( this )
-
+    
     if ent:IsValid() then
         return ent
-    else
-        SF.Throw( "Player is not valid.", 3 )
     end
+    
+    SF.Throw( "Player is not valid.", 3 )
 end
 
 
-local function canUsePlyCore( play )
-    return play:IsAdmin() or play:IsSuperAdmin()
+local function canUsePlyCore( ply )
+    return ply:IsAdmin() or ply:IsSuperAdmin()
 end
 
 
@@ -78,7 +78,7 @@ end
 -- @param number ID
 -- @return The name of the given ammo ID
 function builtins_library.getAmmoName( id )
-    return game.GetAmmoName(id)
+    return game.GetAmmoName( id ) 
 end
 
 
@@ -86,7 +86,7 @@ end
 -- @param string Name
 -- @return The ID of the given ammo name
 function builtins_library.getAmmoID( name )
-    return game.GetAmmoID(name)
+    return game.GetAmmoID( name )
 end
 
 
