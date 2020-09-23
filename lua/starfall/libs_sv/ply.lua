@@ -132,7 +132,7 @@ function player_methods:setPos( pos )
     
     checktype( self, ply_meta )
     local ply = getPly( self )
-    local position = vunwrap(pos)
+    local position = vunwrap( pos )
     ply:SetPos( position )
 end
 
@@ -144,7 +144,7 @@ function player_methods:setEyeAngles( ang )
     
     checktype( self, ply_meta )
     local ply = getPly( self )
-    local angle = aunwrap(ang)
+    local angle = aunwrap( ang )
     ply:SetEyeAngles( angle )
 end
 
@@ -177,7 +177,7 @@ end
 -- @param number Amount
 -- @param bool HidePopup
 function player_methods:giveAmmo( ammoId, amount, hidePopup )
-    if not canUsePlyCore(instance.player) then SF.Throw("You must be an admin to use this function!") end
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!" ) end
     if type(ammoId) ~= "string" and type(ammoId) ~= "number" then SF.Throw("Ammo ID must either be a string or a number!") end
     
     checktype( self, ply_meta )
@@ -189,10 +189,10 @@ end
 --- Sets how much ammo the weapon has in its primary clip. It is possible to exceed the weapon's regular max clip ammount with this function.
 -- @param number Ammo
 function weapon_methods:setClip1( amount )
-    if not canUsePlyCore(instance.player) then SF.Throw("You must be an admin to use this function!") end
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!" ) end
     
     checktype( self, wep_meta )
-    local ply = wunwrap(self)
+    local ply = wunwrap( self )
     ply:SetClip1( amount )
 end
 
@@ -200,10 +200,10 @@ end
 --- Sets how much ammo the weapon has in its secondary clip.
 -- @param number Ammo
 function weapon_methods:setClip2( amount )
-    if not canUsePlyCore(instance.player) then SF.Throw("You must be an admin to use this function!") end
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!" ) end
     
     checktype( self, wep_meta )
-    local ply = wunwrap(self)
+    local ply = wunwrap( self )
     ply:SetClip2( amount )
 end
 
