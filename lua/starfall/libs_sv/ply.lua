@@ -2,6 +2,7 @@ return function( instance )
 
 
 local checktype = instance.CheckType
+local checkluatype = SF.CheckLuaType
 local player_methods = instance.Types.Player.Methods
 local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
@@ -31,6 +32,7 @@ end
 function player_methods:setHealth( health )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( health, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -43,6 +45,7 @@ end
 function player_methods:setMaxHealth( maxHealth )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( maxHealth, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -55,6 +58,7 @@ end
 function player_methods:setArmor( armor )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( armor, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -67,6 +71,7 @@ end
 function player_methods:setJumpPower( jumpPower )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( jumpPower, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -79,6 +84,7 @@ end
 function player_methods:setSlowWalkSpeed( slowWalkSpeed )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( slowWalkSpeed, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -91,6 +97,7 @@ end
 function player_methods:setWalkSpeed( walkSpeed )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( walkSpeed, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -103,6 +110,7 @@ end
 function player_methods:setCrouchSpeedMultiplier( walkSpeed )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( walkSpeed, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -115,6 +123,7 @@ end
 function player_methods:setRunSpeed( runSpeed )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( runSpeed, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -127,6 +136,7 @@ end
 function player_methods:setGravity( gravity )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( gravity, TYPE_NUMBER )
     checktype( self, ply_meta )
     
     local ply = getPly( self )
@@ -165,6 +175,7 @@ function player_methods:stripAmmo()
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
     checktype( self, ply_meta )
+    
     local ply = getPly( self )
     ply:StripAmmo()
 end
@@ -177,7 +188,9 @@ function player_methods:setAmmo( ammoId, amount )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then SF.Throw( "Ammo ID must either be a string or a number!", 2 ) end
     
+    checkluatype( amount, TYPE_NUMBER )
     checktype( self, ply_meta )
+    
     local ply = getPly( self )
     ply:SetAmmo( amount, ammoId )
 end
@@ -191,7 +204,9 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then SF.Throw( "Ammo ID must either be a string or a number!", 2 ) end
     
+    checkluatype( amount, TYPE_NUMBER )
     checktype( self, ply_meta )
+    
     local ply = getPly( self )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
@@ -202,7 +217,9 @@ end
 function weapon_methods:setClip1( amount )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( amount, TYPE_NUMBER )
     checktype( self, wep_meta )
+    
     local ply = wunwrap( self )
     ply:SetClip1( amount )
 end
@@ -213,7 +230,9 @@ end
 function weapon_methods:setClip2( amount )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
     
+    checkluatype( amount, TYPE_NUMBER )
     checktype( self, wep_meta )
+    
     local ply = wunwrap( self )
     ply:SetClip2( amount )
 end
