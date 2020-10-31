@@ -23,7 +23,7 @@ end
 
 
 local function canUsePlyCore( ply )
-    return ply:IsAdmin() or ply:IsSuperAdmin()
+    return ply:IsAdmin()
 end
 
 
@@ -186,7 +186,10 @@ end
 -- @param number Amount
 function player_methods:setAmmo( ammoId, amount )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
-    if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then SF.Throw( "Ammo ID must either be a string or a number!", 2 ) end
+    
+    if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then
+        SF.Throw( "Ammo ID must either be a string or a number!", 2 )
+    end
     
     checkluatype( amount, TYPE_NUMBER )
     checktype( self, ply_meta )
@@ -202,7 +205,10 @@ end
 -- @param bool HidePopup
 function player_methods:giveAmmo( ammoId, amount, hidePopup )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
-    if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then SF.Throw( "Ammo ID must either be a string or a number!", 2 ) end
+    
+    if type( ammoId ) ~= "string" and type( ammoId ) ~= "number" then
+        SF.Throw( "Ammo ID must either be a string or a number!", 2 )
+    end
     
     checkluatype( amount, TYPE_NUMBER )
     checktype( self, ply_meta )

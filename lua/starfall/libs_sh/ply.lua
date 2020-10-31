@@ -20,7 +20,7 @@ end
 
 
 local function canUsePlyCore( ply )
-    return ply:IsAdmin() or ply:IsSuperAdmin()
+    return ply:IsAdmin()
 end
 
 
@@ -28,9 +28,9 @@ end
 -- @return Slow-walk speed of the player
 function player_methods:getSlowWalkSpeed()
     checktype( self, ply_meta )
-    local ent = getPly( self )
+    local ply = getPly( self )
     
-    return ent:GetSlowWalkSpeed()
+    return ply:GetSlowWalkSpeed()
 end
 
 
@@ -38,9 +38,9 @@ end
 -- @return Walk speed of the player
 function player_methods:getWalkSpeed()
     checktype( self, ply_meta )
-    local ent = getPly( self )
+    local ply = getPly( self )
     
-    return ent:GetWalkSpeed()
+    return ply:GetWalkSpeed()
 end
 
 
@@ -48,9 +48,9 @@ end
 -- @return Crouched walk speed multiplier of the player
 function player_methods:getCrouchSpeedMultiplier()
     checktype( self, ply_meta )
-    local ent = getPly( self )
+    local ply = getPly( self )
     
-    return ent:GetCrouchedWalkSpeed()
+    return ply:GetCrouchedWalkSpeed()
 end
 
 
@@ -58,9 +58,9 @@ end
 -- @return Gravity of the player
 function player_methods:getGravity()
     checktype( self, ply_meta )
-    local ent = getPly( self )
+    local ply = getPly( self )
     
-    return ent:GetGravity()
+    return ply:GetGravity()
 end
 
 
@@ -68,9 +68,9 @@ end
 -- @return A table containing all the player's ammo
 function player_methods:getAmmo()
     checktype( self, ply_meta )
-    local ent = getPly( self )
+    local ply = getPly( self )
     
-    return ent:GetAmmo()
+    return ply:GetAmmo()
 end
 
 
