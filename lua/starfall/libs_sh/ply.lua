@@ -89,5 +89,8 @@ function builtins_library.getAmmoID( name )
     return game.GetAmmoID( name )
 end
 
-
+--- Prints coloured/multicoloured text to any client with permission.
+function builtins_library.fPrint( cColour, cText )
+    chat.AddText( cColour, cText ) -- I'm pretty sure that this will print to the client that runs the starfall, not exactly sure how to fix this so please let me know if you have an idea!
+end
 end
