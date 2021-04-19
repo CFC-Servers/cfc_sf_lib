@@ -90,7 +90,8 @@ function builtins_library.getAmmoID( name )
 end
 
 --- Prints coloured/multicoloured text to any client with permission.
-function builtins_library.fPrint( cColour, cText )
-    chat.AddText( cColour, cText ) -- I'm pretty sure that this will print to the client that runs the starfall, not exactly sure how to fix this so please let me know if you have an idea!
+function player_methods:fPrint( self, cColour, cText )
+    self:ConCommand( "lua_run_cl chat.AddText( cColour, cText ) " )
 end
+
 end
