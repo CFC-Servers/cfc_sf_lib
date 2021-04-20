@@ -169,7 +169,7 @@ function npc_methods:getGlobalSquad()
     local npc = getNPC( self )
     checktype( self, npc_meta )
     
-    return npc:GetKeyValues()["squadname"]
+    return npc:GetKeyValues().squadname
 end
 
 
