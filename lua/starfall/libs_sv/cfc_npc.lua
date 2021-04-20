@@ -15,11 +15,9 @@ end
 local function getNPC( self )
 	local ent = nunwrap( self )
     
-	if ent:IsValid() then
-		return ent
-	else
-		SF.Throw( "Entity is not valid.", 3 )
-	end
+	if ent:IsValid() then return ent end
+
+	SF.Throw( "Entity is not valid.", 3 )
 end
 
 
