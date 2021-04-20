@@ -87,17 +87,12 @@ function builtins_library.getAmmoID( name )
     return game.GetAmmoID( name )
 end
 
---- Prints coloured/multicoloured text to any client with permission.
-function printColour( ply, col, text ) -- this just sucks, I don't want to do this but I want it to work, if it works I'll work on finding a less shit way of doing things, sorry!
-    if player() == ply then chat.AddText( col, text ) end -- 
-end
-
 --- Prints coloured text to the client specified if it meets permissisions ( dont know how to check permissions yet, please let me know! )
 -- @param 
 function player_methods:fPrint( self, cColour, cText )
     checktype( self, ply_meta )
     local ply = getPly( self )
-    printColour( ply, cColour, cText )
+    if player() == ply then chat.AddText( cColour, cText ) end
 end
 
 end
