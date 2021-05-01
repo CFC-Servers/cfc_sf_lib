@@ -25,12 +25,16 @@ local function getEntity( self )
 	SF.Throw( "Entity is not valid.", 3 )
 end
 
+local function checkAccess( ply )
+    if not canUseNPCCore( ply ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+end
+
 
 --- Sets the scale of an NPC.
 -- @param number Scale - The new scale for the NPC
 -- @param number Time - Optional, the time it takes for the NPC to reach its new size
 function npc_methods:setScale( scale, time )
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     local npc = getNPC( self )
     
@@ -51,7 +55,7 @@ end
 --- Sets the health of an NPC.
 -- @param number Health - The new health for the NPC
 function npc_methods:setHealth( health )
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     local npc = getNPC( self )
     
@@ -64,7 +68,7 @@ end
 --- Sets the max health of an NPC.
 -- @param number MaxHealth - The new max health for the NPC
 function npc_methods:setMaxHealth( maxHealth )
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     local npc = getNPC( self )
     
@@ -77,7 +81,7 @@ end
 --- Sets the damage multiplier of an NPC.
 -- @param number Multiplier - The new damage multiplier for the NPC
 function npc_methods:setDamageMultiplier( multiplier ) 
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     local npc = getNPC( self )
     
@@ -99,7 +103,7 @@ end
 --- Sets the mapping name of an entity. Useful for things like NPC:fireInput().
 -- @param string MappingName - The entity's mapping name
 function ent_methods:setMappingName( name ) 
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     local ent = getEntity( self )
     
@@ -123,7 +127,7 @@ end
 -- @param any Param - Optional, parameter to pass with the input. Can be a string, bool, or number
 -- @param number Delay - Optional, the delay before the input is fired
 function npc_methods:fireInput( input, param, delay ) 
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     checkluatype( input, TYPE_STRING )
     if delay then checkluatype( delay, TYPE_NUMBER ) end
@@ -137,7 +141,7 @@ end
 --- Sets a global squad on an NPC. NPCs in squads will stick together and help eachother out.
 -- @param string SquadName - The name of the NPC's squad
 function npc_methods:setGlobalSquad( squadName ) 
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     checkluatype( squadName, TYPE_STRING )
     
@@ -159,7 +163,7 @@ end
 --- Sets the weapon proficiency of an NPC. Must be a number from 0 to 4.
 -- @param number WeaponProficiency - The weapon proficiency of an NPC, must be in a range of 0 to 4, inclusive.
 function npc_methods:setWeaponProficiency( weaponProficiency )
-    if not canUseNPCCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+    checkAccess( instance.player )
     
     checkluatype( weaponProficiency, TYPE_NUMBER )
     
