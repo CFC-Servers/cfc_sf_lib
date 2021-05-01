@@ -1,16 +1,13 @@
 return function( instance )
 
-
 local checktype = instance.CheckType
 local checkluatype = SF.CheckLuaType
 local npc_methods, npc_meta, nwrap, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Wrap, instance.Types.Npc.Unwrap
 local ent_methods, ent_meta, ewrap, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Wrap, instance.Types.Entity.Unwrap
 
-
 local function canUseNPCCore( ply )
     return ply:IsAdmin()
 end
-
 
 local function getNPC( self )
 	local ent = nunwrap( self )
@@ -19,7 +16,6 @@ local function getNPC( self )
 
 	SF.Throw( "Entity is not valid.", 3 )
 end
-
 
 local function getEntity( self )
 	local ent = eunwrap( self )
@@ -45,14 +41,12 @@ function npc_methods:setScale( scale, time )
     npc:SetModelScale( scale, time )
 end
 
-
 --- Gets the scale of an NPC.
 -- @return number Scale - The NPC's scale
 function npc_methods:getScale()
     local npc = getNPC( self )
     return npc:GetModelScale()
 end
-
 
 --- Sets the health of an NPC.
 -- @param number Health - The new health for the NPC
@@ -67,7 +61,6 @@ function npc_methods:setHealth( health )
     npc:SetHealth( health )
 end
 
-
 --- Sets the max health of an NPC.
 -- @param number MaxHealth - The new max health for the NPC
 function npc_methods:setMaxHealth( maxHealth )
@@ -80,7 +73,6 @@ function npc_methods:setMaxHealth( maxHealth )
     
     npc:SetMaxHealth( maxHealth )
 end
-
 
 --- Sets the damage multiplier of an NPC.
 -- @param number Multiplier - The new damage multiplier for the NPC
@@ -95,7 +87,6 @@ function npc_methods:setDamageMultiplier( multiplier )
     npc.cfcE2LibNpcDamageMultiplier = multiplier
 end
 
-
 --- Gets the damage multiplier of an NPC.
 -- @return number Multiplier - The NPC's damage multiplier
 function npc_methods:getDamageMultiplier() 
@@ -104,7 +95,6 @@ function npc_methods:getDamageMultiplier()
     
     return npc.cfcE2LibNpcDamageMultiplier or 1
 end
-
 
 --- Sets the mapping name of an entity. Useful for things like NPC:fireInput().
 -- @param string MappingName - The entity's mapping name
@@ -119,7 +109,6 @@ function ent_methods:setMappingName( name )
     ent:SetName( name )
 end
 
-
 --- Returns the mapping name of an entity.
 -- @return string MappingName - The entity's mapping name
 function ent_methods:getMappingName() 
@@ -128,7 +117,6 @@ function ent_methods:getMappingName()
     
     return ent:GetName()
 end
-
 
 --- Fires an input on an NPC. More information on these can be found here: https://developer.valvesoftware.com/wiki/Inputs_and_Outputs, and the NPC's inputs can usually be found on its Valve Developer Wiki page.
 -- @param string Input - Input name
@@ -146,7 +134,6 @@ function npc_methods:fireInput( input, param, delay )
     npc:Fire( input, param, delay )
 end
 
-
 --- Sets a global squad on an NPC. NPCs in squads will stick together and help eachother out.
 -- @param string SquadName - The name of the NPC's squad
 function npc_methods:setGlobalSquad( squadName ) 
@@ -160,7 +147,6 @@ function npc_methods:setGlobalSquad( squadName )
     npc:SetKeyValue( "squadname", squadName )
 end
 
-
 --- Gets the global squad name of an NPC.
 -- @return string SquadName - The name of the NPC's squad
 function npc_methods:getGlobalSquad() 
@@ -169,7 +155,6 @@ function npc_methods:getGlobalSquad()
     
     return npc:GetKeyValues().squadname
 end
-
 
 --- Sets the weapon proficiency of an NPC. Must be a number from 0 to 4.
 -- @param number WeaponProficiency - The weapon proficiency of an NPC, must be in a range of 0 to 4, inclusive.
@@ -184,7 +169,6 @@ function npc_methods:setWeaponProficiency( weaponProficiency )
     npc:SetCurrentWeaponProficiency( math.Clamp(weaponProficiency, 0, 4) )
 end
 
-
 --- Gets the global squad name of an NPC.
 -- @return number WeaponProficiency - The weapon proficiency of an NPC, from 0 to 4.
 function npc_methods:getWeaponProficiency()
@@ -193,6 +177,5 @@ function npc_methods:getWeaponProficiency()
     
     return npc:GetCurrentWeaponProficiency()
 end
-
 
 end
