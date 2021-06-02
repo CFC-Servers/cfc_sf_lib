@@ -10,19 +10,17 @@ local function canUseNPCCore( ply )
 end
 
 local function getNPC( self )
-	local ent = nunwrap( self )
-    
-	if ent:IsValid() then return ent end
+    local ent = nunwrap( self )
+    if ent:IsValid() then return ent end
 
-	SF.Throw( "Entity is not valid.", 3 )
+    SF.Throw( "Entity is not valid.", 3 )
 end
 
 local function getEntity( self )
-	local ent = eunwrap( self )
-    
-	if ent:IsValid() then return ent end
+    local ent = eunwrap( self )
+    if ent:IsValid() then return ent end
 
-	SF.Throw( "Entity is not valid.", 3 )
+    SF.Throw( "Entity is not valid.", 3 )
 end
 
 local function checkAccess( ply )
