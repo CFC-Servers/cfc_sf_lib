@@ -64,7 +64,7 @@ end
 -- @param number ID
 -- @return The name of the given ammo ID
 function builtins_library.getAmmoName( id )
-    return game.GetAmmoName( id ) 
+    return game.GetAmmoName( id )
 end
 
 --- Gets the ID (numerical ID) of an ammo, given its name. Inverse of getAmmoName(id)
