@@ -22,7 +22,7 @@ local function getPly( this )
 end
 
 local function isInPvp( ply )
-    return getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
+    return getPly( ply ):GetNWBool( "CFC_PvXP_Mode", false )
 end
 
 local function inFaction( ply )
