@@ -1,11 +1,9 @@
 return function( instance )
 
-
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
-
 
 local function getPly( this )
     local ent = punwrap( this )
@@ -17,12 +15,6 @@ local function getPly( this )
     SF.Throw( "Player is not valid.", 3 )
 end
 
-
-local function canUsePlyCore( ply )
-    return ply:IsAdmin()
-end
-
-
 --- Gets the slow walking speed of a player. This is when you're using +WALK.
 -- @return Slow-walk speed of the player
 function player_methods:getSlowWalkSpeed()
@@ -31,7 +23,6 @@ function player_methods:getSlowWalkSpeed()
 
     return ply:GetSlowWalkSpeed()
 end
-
 
 --- Gets the regular walking speed of a player. This is when you're just holding W/A/S/D and not using +WALK.
 -- @return Walk speed of the player
@@ -42,7 +33,6 @@ function player_methods:getWalkSpeed()
     return ply:GetWalkSpeed()
 end
 
-
 --- Gets the regular crouched walking speed of a player. This is a multiplier from 0-1.
 -- @return Crouched walk speed multiplier of the player
 function player_methods:getCrouchSpeedMultiplier()
@@ -51,7 +41,6 @@ function player_methods:getCrouchSpeedMultiplier()
 
     return ply:GetCrouchedWalkSpeed()
 end
-
 
 --- Gets the gravity multiplier of a player.
 -- @return Gravity of the player
@@ -62,7 +51,6 @@ function player_methods:getGravity()
     return ply:GetGravity()
 end
 
-
 --- Gets the ammo table of a specific player, displaying all their ammo they currently have. Similar to Player:getAmmoCount(), but returns a table of all their ammo instead of just one.
 -- @return A table containing all the player's ammo
 function player_methods:getAmmo()
@@ -72,14 +60,12 @@ function player_methods:getAmmo()
     return ply:GetAmmo()
 end
 
-
 --- Gets the name (string ID) of an ammo, given an ID. Refer to the keys given from the Player:getAmmo() table for numeric IDs.
 -- @param number ID
 -- @return The name of the given ammo ID
 function builtins_library.getAmmoName( id )
     return game.GetAmmoName( id ) 
 end
-
 
 --- Gets the ID (numerical ID) of an ammo, given its name. Inverse of getAmmoName(id)
 -- @param string Name
