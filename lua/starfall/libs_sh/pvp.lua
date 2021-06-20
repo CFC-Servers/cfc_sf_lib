@@ -21,10 +21,6 @@ local function getPly( this )
     end
 end
 
-local function isInPvp( ply )
-    return getPly( ply ):GetNWBool( "CFC_PvP_Mode", false )
-end
-
 local function inFaction( ply )
     local id = ply:GetNWString( "FactionID", nil )
 
@@ -35,7 +31,7 @@ local function inFaction( ply )
     return true
 end
 
---- Returns a table of all online players currently in Pvp mode.	
+--- Returns a table of all online players currently in Pvp mode.
 -- @return Table of players in Pvp mode
 function pvp_library.getPvpers()
     local pvpers = {}
@@ -49,7 +45,7 @@ function pvp_library.getPvpers()
     return pvpers
 end
 
---- Returns a table of all online players currently in Build mode.	
+--- Returns a table of all online players currently in Build mode.
 -- @return Table of players in Build mode
 function pvp_library.getBuilders()
     local builders = {}
@@ -70,15 +66,15 @@ end
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return isInPvp( ply )
+    return ply.isInPvp
 end
 
---- Returns true if the player is in Pvp mode, false otherwise.	
+--- Returns true if the player is in Pvp mode, false otherwise.
 -- @return Boolean, is the player in Pvp mode
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return isInPvp( self )
+    return self.isInPvp
 end
 
 -- isInBuild
@@ -88,7 +84,7 @@ end
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return not isInPvp( ply )
+    return ply.isInBuild
 end
 
 --- Returns true if the player is in Build mode, false otherwise.
@@ -96,7 +92,7 @@ end
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return not isInPvp( self )
+    return ply.isInBuild1
 end
 
 -- factionID
