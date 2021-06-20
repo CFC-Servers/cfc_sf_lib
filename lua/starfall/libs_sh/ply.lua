@@ -7,7 +7,6 @@ local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
 
-
 local function getPly( this )
     local ent = punwrap( this )
     
@@ -22,8 +21,7 @@ end
 local function canUsePlyCore( ply )
     return ply:IsAdmin()
 end
-
-
+    
 --- Gets the slow walking speed of a player. This is when you're using +WALK.
 -- @return Slow-walk speed of the player
 function player_methods:getSlowWalkSpeed()
@@ -89,5 +87,12 @@ function builtins_library.getAmmoID( name )
     return game.GetAmmoID( name )
 end
 
+--- Prints coloured text to the client specified if it meets permissisions ( dont know how to check permissions yet, please let me know! )
+-- @param 
+function player_methods:fPrint( self, cColour, cText )
+    checktype( self, ply_meta )
+    local ply = getPly( self )
+    if player() == ply then chat.AddText( cColour, cText ) end
+end
 
 end
