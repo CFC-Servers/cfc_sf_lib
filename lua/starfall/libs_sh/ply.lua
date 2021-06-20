@@ -3,18 +3,17 @@ return function( instance )
 
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
-local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
 
 
 local function getPly( this )
     local ent = punwrap( this )
-    
+
     if ent:IsValid() then
         return ent
     end
-    
+
     SF.Throw( "Player is not valid.", 3 )
 end
 
@@ -29,7 +28,7 @@ end
 function player_methods:getSlowWalkSpeed()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetSlowWalkSpeed()
 end
 
@@ -39,7 +38,7 @@ end
 function player_methods:getWalkSpeed()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetWalkSpeed()
 end
 
@@ -49,7 +48,7 @@ end
 function player_methods:getCrouchSpeedMultiplier()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetCrouchedWalkSpeed()
 end
 
@@ -59,7 +58,7 @@ end
 function player_methods:getGravity()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetGravity()
 end
 
@@ -69,7 +68,7 @@ end
 function player_methods:getAmmo()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetAmmo()
 end
 
@@ -88,6 +87,5 @@ end
 function builtins_library.getAmmoID( name )
     return game.GetAmmoID( name )
 end
-
 
 end
