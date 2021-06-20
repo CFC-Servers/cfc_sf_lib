@@ -9,7 +9,7 @@ return function( instance )
 local pvp_library = instance.Libraries.pvp
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
-local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
+local ply_meta, punwrap, plywrap = instance.Types.Player, instance.Types.Player.Unwrap, instance.Types.Player.Wrap
 
 local function getPly( this )
     local ent = punwrap( this )
@@ -42,7 +42,7 @@ function pvp_library.getPvpers()
 
     for _, ply in pairs( player.GetHumans() ) do
         if ply:GetNWBool( "CFC_PvP_Mode", false ) then
-            table.insert( pvpers, ply )
+            table.insert( pvpers, plywrap(ply) )
         end
     end
 
@@ -56,7 +56,7 @@ function pvp_library.getBuilders()
 
     for _, ply in pairs( player.GetHumans() ) do
         if not ply:GetNWBool( "CFC_PvP_Mode", false ) then
-            table.insert( builders, ply )
+            table.insert( builders, plywrap(ply) )
         end
     end
 
