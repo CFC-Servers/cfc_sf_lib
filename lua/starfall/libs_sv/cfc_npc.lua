@@ -2,8 +2,8 @@ return function( instance )
 
 local checktype = instance.CheckType
 local checkluatype = SF.CheckLuaType
-local npc_methods, npc_meta, nwrap, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Wrap, instance.Types.Npc.Unwrap
-local ent_methods, ent_meta, ewrap, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Wrap, instance.Types.Entity.Unwrap
+local npc_methods, npc_meta, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Unwrap
+local ent_methods, ent_meta, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Unwrap
 
 local function canUseNPCCore( ply )
     return ply:IsAdmin()
@@ -33,13 +33,13 @@ end
 -- @param number Time - Optional, the time it takes for the NPC to reach its new size
 function npc_methods:setScale( scale, time )
     checkAccess( instance.player )
-    
+
     local npc = getNPC( self )
-    
+
     checkluatype( scale, TYPE_NUMBER )
     if time then checkluatype( time, TYPE_NUMBER ) end
     checktype( self, npc_meta )
-    
+
     npc:SetModelScale( scale, time )
 end
 
@@ -54,12 +54,12 @@ end
 -- @param number Health - The new health for the NPC
 function npc_methods:setHealth( health )
     checkAccess( instance.player )
-    
+
     local npc = getNPC( self )
-    
+
     checkluatype( health, TYPE_NUMBER )
     checktype( self, npc_meta )
-    
+
     npc:SetHealth( health )
 end
 
@@ -67,56 +67,56 @@ end
 -- @param number MaxHealth - The new max health for the NPC
 function npc_methods:setMaxHealth( maxHealth )
     checkAccess( instance.player )
-    
+
     local npc = getNPC( self )
-    
+
     checkluatype( maxHealth, TYPE_NUMBER )
     checktype( self, npc_meta )
-    
+
     npc:SetMaxHealth( maxHealth )
 end
 
 --- Sets the damage multiplier of an NPC.
 -- @param number Multiplier - The new damage multiplier for the NPC
-function npc_methods:setDamageMultiplier( multiplier ) 
+function npc_methods:setDamageMultiplier( multiplier )
     checkAccess( instance.player )
-    
+
     local npc = getNPC( self )
-    
+
     checkluatype( multiplier, TYPE_NUMBER )
     checktype( self, npc_meta )
-    
+
     npc.cfcE2LibNpcDamageMultiplier = multiplier
 end
 
 --- Gets the damage multiplier of an NPC.
 -- @return number Multiplier - The NPC's damage multiplier
-function npc_methods:getDamageMultiplier() 
+function npc_methods:getDamageMultiplier()
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     return npc.cfcE2LibNpcDamageMultiplier or 1
 end
 
 --- Sets the mapping name of an entity. Useful for things like NPC:fireInput().
 -- @param string MappingName - The entity's mapping name
-function ent_methods:setMappingName( name ) 
+function ent_methods:setMappingName( name )
     checkAccess( instance.player )
-    
+
     local ent = getEntity( self )
-    
+
     checkluatype( name, TYPE_STRING )
     checktype( self, ent_meta )
-    
+
     ent:SetName( name )
 end
 
 --- Returns the mapping name of an entity.
 -- @return string MappingName - The entity's mapping name
-function ent_methods:getMappingName() 
+function ent_methods:getMappingName()
     local ent = getEntity( self )
     checktype( self, ent_meta )
-    
+
     return ent:GetName()
 end
 
@@ -124,37 +124,37 @@ end
 -- @param string Input - Input name
 -- @param any Param - Optional, parameter to pass with the input. Can be a string, bool, or number
 -- @param number Delay - Optional, the delay before the input is fired
-function npc_methods:fireInput( input, param, delay ) 
+function npc_methods:fireInput( input, param, delay )
     checkAccess( instance.player )
-    
+
     checkluatype( input, TYPE_STRING )
     if delay then checkluatype( delay, TYPE_NUMBER ) end
-    
+
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     npc:Fire( input, param, delay )
 end
 
 --- Sets a global squad on an NPC. NPCs in squads will stick together and help eachother out.
 -- @param string SquadName - The name of the NPC's squad
-function npc_methods:setGlobalSquad( squadName ) 
+function npc_methods:setGlobalSquad( squadName )
     checkAccess( instance.player )
-    
+
     checkluatype( squadName, TYPE_STRING )
-    
+
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     npc:SetKeyValue( "squadname", squadName )
 end
 
 --- Gets the global squad name of an NPC.
 -- @return string SquadName - The name of the NPC's squad
-function npc_methods:getGlobalSquad() 
+function npc_methods:getGlobalSquad()
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     return npc:GetKeyValues().squadname
 end
 
@@ -162,12 +162,12 @@ end
 -- @param number WeaponProficiency - The weapon proficiency of an NPC, must be in a range of 0 to 4, inclusive.
 function npc_methods:setWeaponProficiency( weaponProficiency )
     checkAccess( instance.player )
-    
+
     checkluatype( weaponProficiency, TYPE_NUMBER )
-    
+
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     npc:SetCurrentWeaponProficiency( math.Clamp(weaponProficiency, 0, 4) )
 end
 
@@ -176,7 +176,7 @@ end
 function npc_methods:getWeaponProficiency()
     local npc = getNPC( self )
     checktype( self, npc_meta )
-    
+
     return npc:GetCurrentWeaponProficiency()
 end
 
