@@ -2,8 +2,8 @@ return function( instance )
 
 local checktype = instance.CheckType
 local checkluatype = SF.CheckLuaType
-local npc_methods, npc_meta, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Unwrap
-local ent_methods, ent_meta, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Unwrap
+local npc_methods, npc_meta, nwrap, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Wrap, instance.Types.Npc.Unwrap
+local ent_methods, ent_meta, ewrap, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Wrap, instance.Types.Entity.Unwrap
 
 local function canUseNPCCore( ply )
     return ply:IsAdmin()
