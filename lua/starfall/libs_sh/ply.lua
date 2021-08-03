@@ -1,78 +1,64 @@
 return function( instance )
 
-
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
-local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
 
-
 local function getPly( this )
     local ent = punwrap( this )
-    
+
     if ent:IsValid() then
         return ent
     end
-    
+
     SF.Throw( "Player is not valid.", 3 )
 end
-
-
-local function canUsePlyCore( ply )
-    return ply:IsAdmin()
-end
-
 
 --- Gets the slow walking speed of a player. This is when you're using +WALK.
 -- @return Slow-walk speed of the player
 function player_methods:getSlowWalkSpeed()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetSlowWalkSpeed()
 end
-
 
 --- Gets the regular walking speed of a player. This is when you're just holding W/A/S/D and not using +WALK.
 -- @return Walk speed of the player
 function player_methods:getWalkSpeed()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetWalkSpeed()
 end
-
 
 --- Gets the regular crouched walking speed of a player. This is a multiplier from 0-1.
 -- @return Crouched walk speed multiplier of the player
 function player_methods:getCrouchSpeedMultiplier()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetCrouchedWalkSpeed()
 end
-
 
 --- Gets the gravity multiplier of a player.
 -- @return Gravity of the player
 function player_methods:getGravity()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetGravity()
 end
-
 
 --- Gets the ammo table of a specific player, displaying all their ammo they currently have. Similar to Player:getAmmoCount(), but returns a table of all their ammo instead of just one.
 -- @return A table containing all the player's ammo
 function player_methods:getAmmo()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return ply:GetAmmo()
 end
-
 
 --- Gets the vector of a player's color.
 -- @return The vector of a player's color
@@ -83,7 +69,6 @@ function player_methods:getPlayerColor()
     return ply:GetPlayerColor()
 end
 
-
 --- Gets the vector of a player's weapon color.
 -- @return the vector of a player's weapon color 
 function player_methods:getWeaponColor()
@@ -93,14 +78,12 @@ function player_methods:getWeaponColor()
     return ply:GetWeaponColor()
 end
 
-
 --- Gets the name (string ID) of an ammo, given an ID. Refer to the keys given from the Player:getAmmo() table for numeric IDs.
 -- @param number ID
 -- @return The name of the given ammo ID
 function builtins_library.getAmmoName( id )
-    return game.GetAmmoName( id ) 
+    return game.GetAmmoName( id )
 end
-
 
 --- Gets the ID (numerical ID) of an ammo, given its name. Inverse of getAmmoName(id)
 -- @param string Name
@@ -108,6 +91,5 @@ end
 function builtins_library.getAmmoID( name )
     return game.GetAmmoID( name )
 end
-
 
 end
