@@ -74,6 +74,26 @@ function player_methods:getAmmo()
 end
 
 
+--- Gets the vector of a player's color.
+-- @return The vector of a player's color
+function player_methods:getPlayerColor()
+    checktype( self, ply_meta )
+    local ply = getPly( self )
+
+    return ply:GetPlayerColor()
+end
+
+
+--- Gets the vector of a player's weapon color.
+-- @return the vector of a player's weapon color 
+function player_methods:getWeaponColor()
+    checktype( self, ply_meta )
+    local ply = getPly( self )
+
+    return ply:GetWeaponColor()
+end
+
+
 --- Gets the name (string ID) of an ammo, given an ID. Refer to the keys given from the Player:getAmmo() table for numeric IDs.
 -- @param number ID
 -- @return The name of the given ammo ID
