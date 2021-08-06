@@ -2,11 +2,8 @@ return function( instance )
 
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
-<<<<<<< HEAD
 local types = instance.Types
 local weapon_methods = instance.Types.Weapon.Methods
-=======
->>>>>>> bc89a42d0e3746a913344d9d3c5e4d5ac2b8cb21
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
 
