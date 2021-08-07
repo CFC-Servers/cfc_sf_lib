@@ -2,6 +2,8 @@ return function( instance )
 
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
+local colorwrap = instance.Types.Color.Wrap
+local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
 
@@ -58,6 +60,24 @@ function player_methods:getAmmo()
     local ply = getPly( self )
 
     return ply:GetAmmo()
+end
+
+--- Gets a valid player's color.
+-- @return The playermodel color of a given player
+function player_methods:getPlayerColor()
+    checktype( self, ply_meta )
+    local ply = getPly( self )
+    
+    return colorwrap( ply:GetPlayerColor() )
+end
+
+--- Gets a valid player's weapon color.
+-- @return the phygun weapon color of a given player
+function player_methods:getWeaponColor()
+    checktype( self, ply_meta )
+    local ply = getPly( self )
+    
+    return colorwrap( ply:GetWeaponColor() )
 end
 
 --- Gets the name (string ID) of an ammo, given an ID. Refer to the keys given from the Player:getAmmo() table for numeric IDs.
