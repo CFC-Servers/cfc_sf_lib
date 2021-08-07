@@ -2,7 +2,7 @@ return function( instance )
 
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
-local types = instance.Types
+local colwrap = instance.Types.Color.Wrap
 local weapon_methods = instance.Types.Weapon.Methods
 local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local builtins_library = instance.env
@@ -67,8 +67,8 @@ end
 function player_methods:getPlayerColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    local color = types.Color.Wrap( ply:GetPlayerColor() )
-    return
+    local color = colwrap( ply:GetPlayerColor() )
+    return color
 end
 
 --- Gets the vector of a player's weapon color.
@@ -76,7 +76,7 @@ end
 function player_methods:getWeaponColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    local color = types.Color.Wrap( ply:GetWeaponColor() )
+    local color = colwrap( ply:GetWeaponColor() )
     return color
 end
 
