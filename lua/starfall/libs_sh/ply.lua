@@ -62,8 +62,8 @@ function player_methods:getAmmo()
     return ply:GetAmmo()
 end
 
---- Gets the vector of a player's color.
--- @return The vector of a player's color
+--- Gets a valid player's color.
+-- @return The playermodel color of a given player
 function player_methods:getPlayerColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
@@ -71,8 +71,8 @@ function player_methods:getPlayerColor()
     return colorwrap( ply:GetPlayerColor() )
 end
 
---- Gets the vector of a player's weapon color.
--- @return the vector of a player's weapon color 
+--- Gets a valid player's weapon color.
+-- @return the phygun weapon color of a given player
 function player_methods:getWeaponColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
