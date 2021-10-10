@@ -66,7 +66,7 @@ end
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return ply:isInPvp()
+    return getPly( ply ):isInPvp()
 end
 
 --- Returns true if the player is in Pvp mode, false otherwise.	
@@ -74,7 +74,7 @@ end
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return self:isInPvp()
+    return getPly( self ):isInPvp()
 end
 
 -- isInBuild
@@ -84,7 +84,7 @@ end
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return ply:isInBuild()
+    return getPly( ply ):isInBuild()
 end
 
 --- Returns true if the player is in Build mode, false otherwise.
@@ -92,7 +92,7 @@ end
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return self:isInBuild()
+    return getPly( self ):isInBuild()
 end
 
 -- factionID
