@@ -207,7 +207,7 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
 end
 
 --- Prints a message to the specified players chat.
--- @param string message
+-- @param ... printArgs Values to print. Colors before text will set the text color
 function player_methods:chatPrint( ... )
     checkPlyCorePerms( instance.player )
 
