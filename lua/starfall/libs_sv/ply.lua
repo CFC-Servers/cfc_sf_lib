@@ -201,6 +201,16 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
 
+--- Respawns the player.
+function player_methods:spawn()
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    ply:Spawn()
+end
+
 --- Strips the player from all weapons.
 function player_methods:stripWeapons()
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
