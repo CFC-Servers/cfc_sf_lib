@@ -201,8 +201,7 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
 
---- Sets the jump power of a player. Default value is 200.
--- @param number JumpPower
+--- Strips the player from all weapons.
 function player_methods:stripWeapons()
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
 
@@ -212,8 +211,8 @@ function player_methods:stripWeapons()
     ply:StripWeapons()
 end
 
---- Sets the jump power of a player. Default value is 200.
--- @param number JumpPower
+--- Gives the player a weapon by class.
+-- @param string WeaponClass
 function player_methods:give( class )
     if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
 
