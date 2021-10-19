@@ -205,6 +205,7 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     local ply = getPly( self )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
+
 --- Prints a message to the specified players chat.
 -- @param string message
 function player_methods:chatPrint( ... )
