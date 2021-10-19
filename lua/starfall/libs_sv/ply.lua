@@ -201,6 +201,29 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
 
+--- Sets the jump power of a player. Default value is 200.
+-- @param number JumpPower
+function player_methods:stripWeapons()
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    ply:StripWeapons()
+end
+
+--- Sets the jump power of a player. Default value is 200.
+-- @param number JumpPower
+function player_methods:give( class )
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+
+    checkluatype( class, TYPE_STRING )
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    ply:Give( class )
+end
+
 --- Sets how much ammo the weapon has in its primary clip. It is possible to exceed the weapon's regular max clip ammount with this function.
 -- @param number Ammo
 function weapon_methods:setClip1( amount )
