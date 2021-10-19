@@ -217,9 +217,9 @@ function player_methods:chatPrint( ... )
     
     for i,v in pairs({...}) do
         if debug.getmetatable(v) == col_meta then
-            table.insert(args, cunwrap(v))
+            args[i] = cunwrap(v)
         else
-            table.insert(args, tostring(v))
+            args[i] = tostring(v)
         end
     end
     
