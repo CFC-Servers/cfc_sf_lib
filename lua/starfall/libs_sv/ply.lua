@@ -9,6 +9,7 @@ local ply_meta, punwrap = instance.Types.Player, instance.Types.Player.Unwrap
 local ang_meta, awrap, aunwrap = instance.Types.Angle, instance.Types.Angle.Wrap, instance.Types.Angle.Unwrap
 local vec_meta, vwrap, vunwrap = instance.Types.Vector, instance.Types.Vector.Wrap, instance.Types.Vector.Unwrap
 local wep_meta, wwrap, wunwrap = instance.Types.Weapon, instance.Types.Weapon.Wrap, instance.Types.Weapon.Unwrap
+local col_meta, cwrap, cunwrap = instance.Types.Color, instance.Types.Color.Wrap, instance.Types.Color.Unwrap
 
 local function getPly( this )
     local ent = punwrap( this )
@@ -206,14 +207,31 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
 end
 --- Prints a message to the specified players chat.
 -- @param string message
-function player_methods:chatPrint( string )
+function player_methods:chatPrint( ... )
     checkPlyCorePerms( instance.player )
 
     checktype( self, ply_meta )
-    checkluatype( string, TYPE_STRING )
-
+    
+    local args = {}
+    
+    for i,v in pairs({...}) do
+        if debug.getmetatable(v) == col_meta then
+            table.insert(args, cunwrap(v))
+        else
+            table.insert(args, tostring(v))
+        end
+    end
+    
     local ply = getPly( self )
-    ply:ChatPrint( string )
+    
+    net.Start("starfall_chatprint")
+    net.WriteUInt(#args, 32)
+    
+    for i,v in pairs(args) do
+        net.WriteType(v)
+    end
+    
+    net.Send(ply)
 end
 
 --- Respawns the player.
