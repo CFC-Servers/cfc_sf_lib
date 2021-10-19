@@ -211,6 +211,18 @@ function player_methods:stripWeapons()
     ply:StripWeapons()
 end
 
+--- Strips a specific weapon class from the player.
+-- @param string WeaponClass
+function player_methods:stripWeapon( class )
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+
+    checkluatype( class, TYPE_STRING )
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    ply:StripWeapon( class )
+end
+
 --- Gives the player a weapon by class.
 -- @param string WeaponClass
 function player_methods:give( class )
