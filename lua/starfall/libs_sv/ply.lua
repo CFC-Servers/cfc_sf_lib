@@ -20,11 +20,12 @@ local function getPly( this )
     SF.Throw( "Player is not valid.", 3 )
 end
 
+local function noAccess( message )
+    return SF.Throw( message or "You don't have access to that function!" )
+end
+    
 local function checkPlyCorePerms( ply )
-    local bool = ply:IsAdmin() -- Did it like this in the case more ranks need to get added
-    if bool then
-        SF.Throw( "You must be an admin to use this function!", 2 
-    end
+    if not ply:IsAdmin() then return noAccess() end
 end
 
 --- Sets the health of a player.
