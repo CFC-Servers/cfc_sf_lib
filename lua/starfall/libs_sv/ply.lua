@@ -200,6 +200,17 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     local ply = getPly( self )
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
+--- Prints a message to the specified players chat.
+-- @param string message
+function player_methods:chatPrint( string )
+    if not canUsePlyCore( instance.player ) then SF.Throw( "You must be an admin to use this function!", 2 ) end
+
+    checktype( self, ply_meta )
+    checkluatype( string, TYPE_STRING )
+
+    local ply = getPly( self )
+    ply:ChatPrint( string )
+end
 
 --- Respawns the player.
 function player_methods:spawn()
