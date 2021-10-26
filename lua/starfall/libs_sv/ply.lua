@@ -210,7 +210,6 @@ end
 -- @param ... printArgs Values to print. Colors before text will set the text color
 function player_methods:chatPrint( ... )
     checkPlyCorePerms( instance.player )
-    
     checktype( self, ply_meta )
     
     local args = {}
