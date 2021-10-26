@@ -210,29 +210,29 @@ end
 -- @param ... printArgs Values to print. Colors before text will set the text color
 function player_methods:chatPrint( ... )
     checkPlyCorePerms( instance.player )
-
+    
     checktype( self, ply_meta )
     
     local args = {}
     
-    for i,v in pairs({...}) do
-        if debug.getmetatable(v) == col_meta then
-            args[i] = cunwrap(v)
+    for i,v in pairs( { ... } ) do
+        if debug.getmetatable( v ) == col_meta then
+            args[i] = cunwrap( v )
         else
-            args[i] = tostring(v)
+            args[i] = tostring( v )
         end
     end
     
     local ply = getPly( self )
     
-    net.Start("starfall_chatprint")
-    net.WriteUInt(#args, 32)
+    net.Start( "starfall_chatprint" )
+    net.WriteUInt( #args, 32 )
     
-    for i,v in pairs(args) do
-        net.WriteType(v)
+    for i,v in pairs( args ) do
+        net.WriteType( v )
     end
     
-    net.Send(ply)
+    net.Send( ply )
 end
 
 --- Respawns the player.
