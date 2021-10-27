@@ -113,7 +113,7 @@ function player_methods:setCrouchSpeedMultiplier( walkSpeed )
     ply:SetCrouchedWalkSpeed( walkSpeed )
 end
 
---- Sets the running speed of a player. This is when you're holding SHIFT. Default value is 600.
+--- Sets the running speed of a player. This is when you're holding SHIFT. Default value is 400.
 -- @param number RunSpeed
 function player_methods:setRunSpeed( runSpeed )
     checkPlyCorePerms( instance.player )
