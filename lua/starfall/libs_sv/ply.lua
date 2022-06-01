@@ -224,7 +224,8 @@ function player_methods:chatPrint( ... )
     
     local ply = getPly( self )
     
-    net.Start( "starfall_chatprint" )
+    net.Start( "starfall_print" )
+    net.WriteBool( false )
     net.WriteUInt( #args, 32 )
     
     for i,v in pairs( args ) do
