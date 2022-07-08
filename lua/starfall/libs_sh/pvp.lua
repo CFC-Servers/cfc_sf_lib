@@ -10,6 +10,7 @@ local pvp_library = instance.Libraries.pvp
 local checktype = instance.CheckType
 local player_methods = instance.Types.Player.Methods
 local ply_meta, punwrap, plywrap = instance.Types.Player, instance.Types.Player.Unwrap, instance.Types.Player.Wrap
+local add = SF.hookAdd
 
 local function getPly( this )
     local ent = punwrap( this )
@@ -84,5 +85,19 @@ function player_methods:isInBuild()
 
     return getPly( self ):isInBuild()
 end
+
+--CFC_PvP_PlayerEnterPvp
+-- @name CFC_PvP_PlayerEnterPvp
+-- @class hook
+-- @shared
+-- @param Player ply Player Entering PvP
+add( "CFC_PvP_PlayerEnterPvp" )
+
+--CFC_PvP_PlayerExitPvp
+-- @name CFC_PvP_PlayerExitPvp
+-- @class hook
+-- @shared
+-- @param Player ply Player Exiting PvP
+add( "CFC_PvP_PlayerExitPvp" )
 
 end
