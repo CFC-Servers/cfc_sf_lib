@@ -86,18 +86,18 @@ function player_methods:isInBuild()
     return getPly( self ):isInBuild()
 end
 
---CFC_PvP_PlayerEnterPvp
--- @name CFC_PvP_PlayerEnterPvp
--- @class hook
+--- Called when player enters pvp
 -- @shared
+-- @name playerEnterPvp
+-- @class hook
 -- @param Player ply Player Entering PvP
-add( "CFC_PvP_PlayerEnterPvp", "playerEnterPvp" )
+add( "CFC_PvP_PlayerEnterPvp", "playerenterpvp" )
 
---CFC_PvP_PlayerExitPvp
--- @name CFC_PvP_PlayerExitPvp
--- @class hook
+--- Called when player exits pvp
 -- @shared
+-- @name playerExitPvp
+-- @class hook
 -- @param Player ply Player Exiting PvP
-add( "CFC_PvP_PlayerExitPvp", "playerExitPvp" )
+add( "CFC_PvP_PlayerExitPvp", "playerexitpvp" )
 
 end
