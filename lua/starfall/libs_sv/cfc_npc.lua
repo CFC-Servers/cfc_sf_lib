@@ -168,7 +168,7 @@ function npc_methods:setWeaponProficiency( weaponProficiency )
     local npc = getNPC( self )
     checktype( self, npc_meta )
 
-    npc:SetCurrentWeaponProficiency( math.Clamp(weaponProficiency, 0, 4) )
+    npc:SetCurrentWeaponProficiency( math.Clamp( weaponProficiency, 0, 4 ) )
 end
 
 --- Gets the global squad name of an NPC.

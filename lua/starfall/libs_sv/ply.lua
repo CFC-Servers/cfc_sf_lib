@@ -24,7 +24,7 @@ end
 local function noAccess( message )
     return SF.Throw( message or "You don't have access to that function!" )
 end
-    
+
 local function checkPlyCorePerms( ply )
     if not ply:IsAdmin() then return noAccess() end
 end
@@ -211,9 +211,9 @@ end
 function player_methods:chatPrint( ... )
     checkPlyCorePerms( instance.player )
     checktype( self, ply_meta )
-    
+
     local args = {}
-    
+
     for i,v in pairs( { ... } ) do
         if debug.getmetatable( v ) == col_meta then
             args[i] = cunwrap( v )
@@ -221,17 +221,17 @@ function player_methods:chatPrint( ... )
             args[i] = tostring( v )
         end
     end
-    
+
     local ply = getPly( self )
-    
+
     net.Start( "starfall_print" )
     net.WriteBool( false )
     net.WriteUInt( #args, 32 )
-    
-    for i,v in pairs( args ) do
+
+    for _, v in pairs( args ) do
         net.WriteType( v )
     end
-    
+
     net.Send( ply )
 end
 
