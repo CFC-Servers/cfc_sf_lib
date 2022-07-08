@@ -60,7 +60,7 @@ function pvp_library.playerIsInPvp( ply )
     return getPly( ply ):isInPvp()
 end
 
---- Returns true if the player is in Pvp mode, false otherwise.	=
+--- Returns true if the player is in Pvp mode, false otherwise.
 -- @return Boolean, is the player in Pvp mode
 function player_methods:isInPvp()
     checktype( self, ply_meta )
