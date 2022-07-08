@@ -67,7 +67,7 @@ end
 function player_methods:getPlayerColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return colorwrap( ply:GetPlayerColor() )
 end
 
@@ -76,7 +76,7 @@ end
 function player_methods:getWeaponColor()
     checktype( self, ply_meta )
     local ply = getPly( self )
-    
+
     return colorwrap( ply:GetWeaponColor() )
 end
 
