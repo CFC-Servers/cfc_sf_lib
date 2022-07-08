@@ -98,6 +98,6 @@ add( "CFC_PvP_PlayerEnterPvp" )
 -- @class hook
 -- @shared
 -- @param Player ply Player Exiting PvP
-add( "CFC_PvP_PlayerExitPvp" )
+add( "CFC_PvP_PlayerExitPvp", "playerExitPvp" )
 
 end
