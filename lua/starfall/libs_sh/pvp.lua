@@ -62,7 +62,7 @@ end
 
 --- Returns true if the player is in Pvp mode, false otherwise.
 -- @return Boolean, is the player in Pvp mode
-function player_methods:IsInPvp()
+function player_methods:isInPvp()
     checktype( self, ply_meta )
 
     return getPly( self ):IsInPvp()
@@ -80,7 +80,7 @@ end
 
 --- Returns true if the player is in Build mode, false otherwise.
 -- @return Boolean, is the player in Build mode
-function player_methods:IsInBuild()
+function player_methods:isInBuild()
     checktype( self, ply_meta )
 
     return getPly( self ):IsInBuild()
