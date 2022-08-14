@@ -28,7 +28,7 @@ function pvp_library.getPvpers()
     local pvpers = {}
 
     for _, ply in pairs( player.GetHumans() ) do
-        if ply:isInPvp() then
+        if ply:IsInPvp() then
             table.insert( pvpers, plywrap( ply ) )
         end
     end
@@ -42,7 +42,7 @@ function pvp_library.getBuilders()
     local builders = {}
 
     for _, ply in pairs( player.GetHumans() ) do
-        if ply:isInBuild() then
+        if ply:IsInBuild() then
             table.insert( builders, plywrap( ply ) )
         end
     end
@@ -50,14 +50,14 @@ function pvp_library.getBuilders()
     return builders
 end
 
--- isInPvp
+-- IsInPvp
 --- Returns true if the player is in Pvp mode, false otherwise.
 -- @param ply Player
 -- @return Boolean, is the player in Pvp mode
 function pvp_library.playerIsInPvp( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):isInPvp()
+    return getPly( ply ):IsInPvp()
 end
 
 --- Returns true if the player is in Pvp mode, false otherwise.
@@ -65,17 +65,17 @@ end
 function player_methods:isInPvp()
     checktype( self, ply_meta )
 
-    return getPly( self ):isInPvp()
+    return getPly( self ):IsInPvp()
 end
 
--- isInBuild
+-- IsInBuild
 --- Returns true if the player is in Build mode, false otherwise.
 -- @param ply Player
 -- @return Boolean, is the player in Build mode
 function pvp_library.playerIsInBuild( ply )
     checktype( ply, ply_meta )
 
-    return getPly( ply ):isInBuild()
+    return getPly( ply ):IsInBuild()
 end
 
 --- Returns true if the player is in Build mode, false otherwise.
@@ -83,7 +83,7 @@ end
 function player_methods:isInBuild()
     checktype( self, ply_meta )
 
-    return getPly( self ):isInBuild()
+    return getPly( self ):IsInBuild()
 end
 
 --- Called when player enters pvp
@@ -99,5 +99,5 @@ add( "CFC_PvP_PlayerEnterPvp", "playerenterpvp" )
 -- @class hook
 -- @param Player ply Player Exiting PvP
 add( "CFC_PvP_PlayerExitPvp", "playerexitpvp" )
-
+    return getPly( self ):IsInBuild()
 end
