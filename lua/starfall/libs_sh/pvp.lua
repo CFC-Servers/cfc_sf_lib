@@ -99,5 +99,6 @@ add( "CFC_PvP_PlayerEnterPvp", "playerenterpvp" )
 -- @class hook
 -- @param Player ply Player Exiting PvP
 add( "CFC_PvP_PlayerExitPvp", "playerexitpvp" )
-    return getPly( self ):IsInBuild()
+
+
 end
