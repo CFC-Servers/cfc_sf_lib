@@ -3,7 +3,7 @@ return function( instance )
 local checktype = instance.CheckType
 local checkluatype = SF.CheckLuaType
 local npc_methods, npc_meta, nwrap, nunwrap = instance.Types.Npc.Methods, instance.Types.Npc, instance.Types.Npc.Wrap, instance.Types.Npc.Unwrap
-local ent_methods, ent_meta, ewrap, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Wrap, instance.Types.Entity.Unwrap
+local ents_methods, ent_meta, ewrap, eunwrap = instance.Types.Entity.Methods, instance.Types.Entity, instance.Types.Entity.Wrap, instance.Types.Entity.Unwrap
 
 local function canUseNPCCore( ply )
     return ply:IsAdmin()
@@ -100,7 +100,7 @@ end
 
 --- Sets the mapping name of an entity. Useful for things like NPC:fireInput().
 -- @param string MappingName - The entity's mapping name
-function ent_methods:setMappingName( name )
+function ents_methods:setMappingName( name )
     checkAccess( instance.player )
 
     local ent = getEntity( self )
@@ -113,7 +113,7 @@ end
 
 --- Returns the mapping name of an entity.
 -- @return string MappingName - The entity's mapping name
-function ent_methods:getMappingName()
+function ents_methods:getMappingName()
     local ent = getEntity( self )
     checktype( self, ent_meta )
 
