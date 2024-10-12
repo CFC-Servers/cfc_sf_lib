@@ -149,6 +149,33 @@ function player_methods:setPos( pos )
     ply:SetPos( position )
 end
 
+--- Sets the player color of a player.
+-- @param color PlayerColor
+function player_methods:setPlayerColor( color )
+    checkPlyCorePerms( instance.player )
+
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    local playerColor = cunwrap( color )
+    ply:SetPlayerColor( playerColor )
+end
+
+--- Sets the model of a player.
+-- @param string Model
+function player_methods:setPlayerModel( model )
+    checkPlyCorePerms( instance.player )
+
+    checktype( self, ply_meta )
+
+    if type( model ) ~= "string" then
+        SF.Throw( "Model must be a string!", 2 )
+    end
+
+    local ply = getPly( self )
+    ply:SetModel( model )
+end
+
 --- Sets the eye angles of a player.
 -- @param angle EyeAngles
 function player_methods:setEyeAngles( ang )
