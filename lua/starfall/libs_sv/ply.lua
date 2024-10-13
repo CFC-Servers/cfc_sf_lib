@@ -150,14 +150,14 @@ function player_methods:setPos( pos )
 end
 
 --- Sets the player color of a player.
--- @param color PlayerColor
+-- @param vector PlayerColor
 function player_methods:setPlayerColor( color )
     checkPlyCorePerms( instance.player )
 
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    local playerColor = cunwrap( color )
+    local playerColor = vunwrap( color ) -- SetPlayerColor takes a vector with x,y,z being between 0-1
     ply:SetPlayerColor( playerColor )
 end
 
