@@ -151,14 +151,14 @@ end
 
 --- Sets the player color of a player.
 -- @param vector PlayerColor
-function player_methods:setPlayerColor( color )
+function player_methods:setPlayerColor( colorV )
     checkPlyCorePerms( instance.player )
 
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    local playerColor = vunwrap( color ) -- SetPlayerColor takes a vector with x,y,z being between 0-1
-    ply:SetPlayerColor( playerColor )
+    local playerColorV = vunwrap( colorV ) -- SetPlayerColor takes a vector with x,y,z being between 0-1
+    ply:SetPlayerColor( playerColorV )
 end
 
 --- Sets the model of a player.
