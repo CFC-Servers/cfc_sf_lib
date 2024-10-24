@@ -10,6 +10,7 @@ local ang_meta, awrap, aunwrap = instance.Types.Angle, instance.Types.Angle.Wrap
 local vec_meta, vwrap, vunwrap = instance.Types.Vector, instance.Types.Vector.Wrap, instance.Types.Vector.Unwrap
 local wep_meta, wwrap, wunwrap = instance.Types.Weapon, instance.Types.Weapon.Wrap, instance.Types.Weapon.Unwrap
 local col_meta, cwrap, cunwrap = instance.Types.Color, instance.Types.Color.Wrap, instance.Types.Color.Unwrap
+local veh_meta, vehwrap, vehunwrap = instance.Types.Vehicle, instance.Types.Vehicle.Wrap, instance.Types.Vehicle.Unwrap
 
 local function getPly( this )
     local ent = punwrap( this )
@@ -147,6 +148,32 @@ function player_methods:setPos( pos )
     local ply = getPly( self )
     local position = vunwrap( pos )
     ply:SetPos( position )
+end
+
+--- Forces a player to enter a vehicle.
+-- @param entity vehicle
+function player_methods:enterVehicle( vehicle )
+    checkPlyCorePerms( instance.player )
+
+    checktype( self, ply_meta )
+    checktype( vehicle, veh_meta )
+
+    local ply = getPly( self )
+    if ply:InVehicle() then ply:ExitVehicle() end
+
+    ply:EnterVehicle( vehicle )
+end
+
+--- Forces a player to exit their current vehicle.
+function player_methods:exitVehicle()
+    checkPlyCorePerms( instance.player )
+
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    if not ply:InVehicle() then return end
+
+    ply:ExitVehicle()
 end
 
 --- Sets the player color of a player.
