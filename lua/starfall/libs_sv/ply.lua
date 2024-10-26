@@ -152,15 +152,16 @@ end
 
 --- Forces a player to enter a vehicle.
 -- @param entity vehicle
-function player_methods:enterVehicle( vehicle )
+function player_methods:enterVehicle( veh )
     checkPlyCorePerms( instance.player )
 
     checktype( self, ply_meta )
-    checktype( vehicle, veh_meta )
+    checktype( veh, veh_meta )
 
     local ply = getPly( self )
     if ply:InVehicle() then ply:ExitVehicle() end
 
+    local vehicle = vehunwrap( veh )
     ply:EnterVehicle( vehicle )
 end
 
