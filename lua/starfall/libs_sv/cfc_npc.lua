@@ -120,6 +120,26 @@ function ents_methods:getMappingName()
     return ent:GetName()
 end
 
+--- Gets lagcompensation on a npc.
+-- @return bool Lagcompensation - If the entity is lagcompensated or not
+function ents_methods:getLagCompensated()
+    local ent = getEntity( self )
+    checktype( self, ent_meta )
+
+    return ent:IsLagCompensated()
+end
+
+--- Toggles lagcompensation on a npc.
+function ents_methods:setLagCompensated( bool )
+    checkAccess( instance.player )
+
+    checkluatype( bool, TYPE_BOOL )
+    local ent = getEntity( self )
+    checktype( self, ent_meta )
+
+    ent:SetLagCompensated( bool )
+end
+
 --- Fires an input on an NPC. More information on these can be found here: https://developer.valvesoftware.com/wiki/Inputs_and_Outputs, and the NPC's inputs can usually be found on its Valve Developer Wiki page.
 -- @param string Input - Input name
 -- @param any Param - Optional, parameter to pass with the input. Can be a string, bool, or number
