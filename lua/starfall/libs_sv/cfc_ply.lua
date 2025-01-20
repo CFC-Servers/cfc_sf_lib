@@ -22,15 +22,14 @@ local function getPly( this )
     SF.Throw( "Player is not valid.", 3 )
 end
 
-local function noAccess()
-    return SF.Throw( "You don't have access to that function!" )
+local function noAccess( message )
+    return SF.Throw( message or "You don't have access to that function!" )
 end
 
 local function checkPlyCorePerms( ply, target )
     if ply:IsAdmin() then return end
-    if ply:IsInBuild() and ply == target then return end
-
-    noAccess()
+    if not ply:IsInBuild() then noAccess( "You need to be in build mode to use this function!" ) end
+    if ply ~= target then noAccess( "This function can only be used on yourself!" ) end
 end
 
 --- Sets the health of a player.
