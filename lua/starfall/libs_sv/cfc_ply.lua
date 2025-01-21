@@ -28,10 +28,10 @@ end
 
 local function checkPlyCorePerms( sfInstance, target )
     local ply = sfInstance.player
-
     if ply:IsAdmin() then return end
-    if ply.IsInBuild and not ply:IsInBuild() then noAccess( "You need to be in build mode to use this function!" ) end
-    if ply ~= target then noAccess( "This function can only be used on yourself!" ) end
+
+    local allowed, message = hook.Run( "CFC_SFLib_PlyCoreFunction" )
+    if not allowed then noAccess( message ) end
 end
 
 --- Sets the health of a player.
