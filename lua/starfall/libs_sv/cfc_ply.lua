@@ -26,12 +26,12 @@ local function noAccess( message )
     return SF.Throw( message or "You don't have access to that function!" )
 end
 
-local function checkPlyCorePerms( sfInstance, target )
+local function checkPlyCorePerms( sfInstance, target, funcName, ... )
     local ply = sfInstance.player
     if ply:IsAdmin() then return end
 
-    local allowed, message = hook.Run( "CFC_SFLib_PlyCoreFunction" )
-    if not allowed then noAccess( message ) end
+    local allowed, message = hook.Run( "CFC_SFLib_PlyCoreFunction", funcName, ply, target, sfInstance, ... )
+    if allowed == false then noAccess( message ) end
 end
 
 --- Sets the health of a player.
@@ -41,7 +41,7 @@ function player_methods:setHealth( health )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setHealth", health )
 
     ply:SetHealth( health )
 end
@@ -53,7 +53,7 @@ function player_methods:setMaxHealth( maxHealth )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setMaxHealth", maxHealth )
 
     ply:SetMaxHealth( maxHealth )
 end
@@ -65,7 +65,7 @@ function player_methods:setArmor( armor )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setArmor", armor )
 
     ply:SetArmor( armor )
 end
@@ -77,7 +77,7 @@ function player_methods:setJumpPower( jumpPower )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setJumpPower", jumpPower )
 
     ply:SetJumpPower( jumpPower )
 end
@@ -89,7 +89,7 @@ function player_methods:setSlowWalkSpeed( slowWalkSpeed )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setSlowWalkSpeed", slowWalkSpeed )
 
     ply:SetSlowWalkSpeed( slowWalkSpeed )
 end
@@ -101,21 +101,21 @@ function player_methods:setWalkSpeed( walkSpeed )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setWalkSpeed", walkSpeed )
 
     ply:SetWalkSpeed( walkSpeed )
 end
 
 --- Sets the crouch speed multiplier of a player. This is a number from 0-1. Default is 0.3.
 -- @param number Multiplier
-function player_methods:setCrouchSpeedMultiplier( walkSpeed )
-    checkluatype( walkSpeed, TYPE_NUMBER )
+function player_methods:setCrouchSpeedMultiplier( crouchSpeed )
+    checkluatype( crouchSpeed, TYPE_NUMBER )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setCrouchSpeedMultiplier", crouchSpeed )
 
-    ply:SetCrouchedWalkSpeed( walkSpeed )
+    ply:SetCrouchedWalkSpeed( crouchSpeed )
 end
 
 --- Sets the running speed of a player. This is when you're holding SHIFT. Default value is 400.
@@ -125,7 +125,7 @@ function player_methods:setRunSpeed( runSpeed )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setRunSpeed", runSpeed )
 
     ply:SetRunSpeed( runSpeed )
 end
@@ -137,7 +137,7 @@ function player_methods:setGravity( gravity )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setGravity", gravity )
 
     ply:SetGravity( gravity )
 end
@@ -148,7 +148,7 @@ function player_methods:setPos( pos )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setPos", pos )
 
     local position = vunwrap( pos )
     ply:SetPos( position )
@@ -161,7 +161,7 @@ function player_methods:enterVehicle( veh )
     checktype( veh, veh_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "enterVehicle", veh )
 
     if ply:InVehicle() then ply:ExitVehicle() end
 
@@ -174,7 +174,7 @@ function player_methods:exitVehicle()
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "exitVehicle" )
 
     if not ply:InVehicle() then return end
 
@@ -187,7 +187,7 @@ function player_methods:setPlayerColor( colorV )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setPlayerColor", colorV )
 
     local playerColorV = vunwrap( colorV ) -- SetPlayerColor takes a vector with x,y,z being between 0-1
     ply:SetPlayerColor( playerColorV )
@@ -196,8 +196,6 @@ end
 --- Sets the model of a player.
 -- @param string Model
 function player_methods:setPlayerModel( model )
-    if not instance.player:IsAdmin() then noAccess() end
-
     checktype( self, ply_meta )
 
     if type( model ) ~= "string" then
@@ -205,6 +203,7 @@ function player_methods:setPlayerModel( model )
     end
 
     local ply = getPly( self )
+    checkPlyCorePerms( instance, ply, "setPlayerModel", model )
 
     ply:SetModel( model )
 end
@@ -215,7 +214,7 @@ function player_methods:setEyeAngles( ang )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setEyeAngles", ang )
 
     local angle = aunwrap( ang )
     ply:SetEyeAngles( angle )
@@ -226,7 +225,7 @@ function player_methods:stripAmmo()
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "stripAmmo" )
 
     ply:StripAmmo()
 end
@@ -243,7 +242,7 @@ function player_methods:setAmmo( ammoId, amount )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setAmmo", ammoId, amount )
 
     ply:SetAmmo( amount, ammoId )
 end
@@ -261,7 +260,7 @@ function player_methods:giveAmmo( ammoId, amount, hidePopup )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "giveAmmo", ammoId, amount, hidePopup )
 
     ply:GiveAmmo( amount, ammoId, hidePopup )
 end
@@ -282,7 +281,7 @@ function player_methods:chatPrint( ... )
     end
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "chatPrint" )
 
     net.Start( "starfall_print" )
     net.WriteBool( false )
@@ -300,7 +299,7 @@ function player_methods:spawn()
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "spawn" )
 
     ply:Spawn()
 end
@@ -310,7 +309,7 @@ function player_methods:stripWeapons()
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "stripWeapons" )
 
     ply:StripWeapons()
 end
@@ -322,7 +321,7 @@ function player_methods:stripWeapon( class )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "stripWeapon", class )
 
     ply:StripWeapon( class )
 end
@@ -331,13 +330,11 @@ end
 --- Admin only, can spawn any entity
 -- @param string WeaponClass
 function player_methods:give( class )
-    if not instance.player:IsAdmin() then noAccess() end
-
     checkluatype( class, TYPE_STRING )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-
+    checkPlyCorePerms( instance, ply, "give", class )
     ply:Give( class )
 end
 
@@ -348,7 +345,7 @@ function weapon_methods:setClip1( amount )
     checktype( self, wep_meta )
 
     local ply = wunwrap( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setClip1", amount )
 
     ply:SetClip1( amount )
 end
@@ -360,7 +357,7 @@ function weapon_methods:setClip2( amount )
     checktype( self, wep_meta )
 
     local ply = wunwrap( self )
-    checkPlyCorePerms( instance, ply )
+    checkPlyCorePerms( instance, ply, "setClip2", amount )
 
     ply:SetClip2( amount )
 end
