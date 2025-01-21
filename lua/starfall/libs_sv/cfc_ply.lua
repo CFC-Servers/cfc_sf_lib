@@ -148,9 +148,10 @@ function player_methods:setPos( pos )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "setPos", pos )
 
     local position = vunwrap( pos )
+    checkPlyCorePerms( instance, ply, "setPos", position )
+
     ply:SetPos( position )
 end
 
@@ -161,11 +162,11 @@ function player_methods:enterVehicle( veh )
     checktype( veh, veh_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "enterVehicle", veh )
-
     if ply:InVehicle() then ply:ExitVehicle() end
 
     local vehicle = vehunwrap( veh )
+    checkPlyCorePerms( instance, ply, "enterVehicle", vehicle )
+
     ply:EnterVehicle( vehicle )
 end
 
@@ -187,9 +188,9 @@ function player_methods:setPlayerColor( colorV )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "setPlayerColor", colorV )
 
     local playerColorV = vunwrap( colorV ) -- SetPlayerColor takes a vector with x,y,z being between 0-1
+    checkPlyCorePerms( instance, ply, "setPlayerColor", playerColorV )
     ply:SetPlayerColor( playerColorV )
 end
 
@@ -214,9 +215,10 @@ function player_methods:setEyeAngles( ang )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "setEyeAngles", ang )
 
     local angle = aunwrap( ang )
+    checkPlyCorePerms( instance, ply, "setEyeAngles", angle )
+
     ply:SetEyeAngles( angle )
 end
 
@@ -281,7 +283,7 @@ function player_methods:chatPrint( ... )
     end
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "chatPrint" )
+    checkPlyCorePerms( instance, ply, "chatPrint", unpack( args ) )
 
     net.Start( "starfall_print" )
     net.WriteBool( false )
