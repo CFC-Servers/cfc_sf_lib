@@ -337,7 +337,16 @@ function player_methods:give( class )
 
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "give", class )
-    ply:Give( class )
+
+    if ply:IsAdmin() then
+        -- Ensure valid weapon
+        local swep = list.Get( "Weapon" )[class]
+        if swep == nil then return end
+
+        ply:Give( class )
+    else
+        CCGiveSWEP( ply, "gm_giveswep", { class } )
+    end
 end
 
 --- Sets how much ammo the weapon has in its primary clip. It is possible to exceed the weapon's regular max clip ammount with this function.
