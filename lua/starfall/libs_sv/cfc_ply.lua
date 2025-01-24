@@ -341,12 +341,12 @@ end
 
 --- Sets the mass of the player. Default 85
 -- @param number Mass
-function player_methods:setMass( number )
-    checkluatype( number, TYPE_NUMBER )
+function player_methods:setMass( mass )
+    checkluatype( mass, TYPE_NUMBER )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
-    checkPlyCorePerms( instance, ply, "setMass", force )
+    checkPlyCorePerms( instance, ply, "setMass", mass )
 
     ply:GetPhysicsObject():SetMass( math.Clamp( mass, 1, 50000 ) )
 end
