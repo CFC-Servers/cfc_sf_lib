@@ -354,7 +354,8 @@ end
 --- Ignites the player for specified amount of time, in seconds.
 -- @param number Time
 function player_methods:ignite( time )
-    time = time or 10
+    time = time or math.huge
+    if time == 0 then time = math.huge end
 
     checkluatype( time, TYPE_NUMBER )
     checktype( self, ply_meta )
@@ -362,11 +363,7 @@ function player_methods:ignite( time )
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "ignite", time )
 
-    if time > 0 then
-        ply:Ignite( time )
-    else
-        ply:Extinguish()
-    end
+    ply:Ignite( time )
 end
 
 --- Extinguishes the player.
