@@ -331,12 +331,15 @@ end
 --- Applies force to the player.
 -- @param vector Force
 function player_methods:applyForce( force )
+    force = vunwrap( force )
+
+    checkluatype( force, TYPE_VECTOR )
     checktype( self, ply_meta )
 
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "applyForce", force )
 
-    ply:SetVelocity( vunwrap( force ) )
+    ply:SetVelocity( force )
 end
 
 --- Sets the mass of the player. Default 85
