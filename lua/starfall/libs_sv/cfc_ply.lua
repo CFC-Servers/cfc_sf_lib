@@ -348,6 +348,7 @@ function player_methods:setMass( mass )
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "setMass", mass )
 
+    if not IsValid( ply:GetPhysicsObject() ) then SF.Throw( "Player's physics object was invalid" ) end
     ply:GetPhysicsObject():SetMass( math.Clamp( mass, 1, 50000 ) )
 end
 
