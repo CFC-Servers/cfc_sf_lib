@@ -328,6 +328,57 @@ function player_methods:stripWeapon( class )
     ply:StripWeapon( class )
 end
 
+--- Applies force to the player.
+-- @param vector Force
+function player_methods:applyForce( force )
+    force = vunwrap( force )
+
+    checkluatype( force, TYPE_VECTOR )
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    checkPlyCorePerms( instance, ply, "applyForce", force )
+
+    ply:SetVelocity( force )
+end
+
+--- Sets the mass of the player. Default 85
+-- @param number Mass
+function player_methods:setMass( mass )
+    checkluatype( mass, TYPE_NUMBER )
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    checkPlyCorePerms( instance, ply, "setMass", mass )
+
+    if not IsValid( ply:GetPhysicsObject() ) then SF.Throw( "Player's physics object was invalid" ) end
+    ply:GetPhysicsObject():SetMass( math.Clamp( mass, 1, 50000 ) )
+end
+
+--- Ignites the player for specified amount of time, in seconds.
+-- @param number? Time
+function player_methods:ignite( time )
+    time = time or math.huge
+    if time == 0 then time = math.huge end
+
+    checkluatype( time, TYPE_NUMBER )
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    checkPlyCorePerms( instance, ply, "ignite", time )
+
+    ply:Ignite( time )
+end
+
+--- Extinguishes the player.
+function player_methods:extinguish()
+    checktype( self, ply_meta )
+
+    local ply = getPly( self )
+    checkPlyCorePerms( instance, ply, "extinguish" )
+
+    ply:Extinguish()
+end
 --- Gives the player a weapon by class.
 --- Admin only, can spawn any entity
 -- @param string WeaponClass
