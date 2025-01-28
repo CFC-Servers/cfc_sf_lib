@@ -356,7 +356,7 @@ function player_methods:setMass( mass )
 end
 
 --- Ignites the player for specified amount of time, in seconds.
--- @param number Time
+-- @param number? Time
 function player_methods:ignite( time )
     time = time or math.huge
     if time == 0 then time = math.huge end
