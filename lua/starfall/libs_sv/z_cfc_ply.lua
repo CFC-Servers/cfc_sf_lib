@@ -389,7 +389,7 @@ function player_methods:give( class )
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "give", class )
 
-    if ply:IsAdmin() then
+    if instance.player:IsAdmin() then
         -- Ensure valid weapon
         local swep = list.Get( "Weapon" )[class]
         if swep == nil then return end
