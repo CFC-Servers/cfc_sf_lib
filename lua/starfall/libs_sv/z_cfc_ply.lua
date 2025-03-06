@@ -389,7 +389,7 @@ function player_methods:give( class )
     local ply = getPly( self )
     checkPlyCorePerms( instance, ply, "give", class )
 
-    if ply:IsAdmin() then
+    if instance.player:IsAdmin() then
         -- Ensure valid weapon
         local swep = list.Get( "Weapon" )[class]
         if swep == nil then return end
@@ -406,10 +406,10 @@ function weapon_methods:setClip1( amount )
     checkluatype( amount, TYPE_NUMBER )
     checktype( self, wep_meta )
 
-    local ply = wunwrap( self )
-    checkPlyCorePerms( instance, ply, "setClip1", amount )
+    local wep = wunwrap( self )
+    checkPlyCorePerms( instance, wep, "setClip1", amount )
 
-    ply:SetClip1( amount )
+    wep:SetClip1( amount )
 end
 
 --- Sets how much ammo the weapon has in its secondary clip.
@@ -418,10 +418,10 @@ function weapon_methods:setClip2( amount )
     checkluatype( amount, TYPE_NUMBER )
     checktype( self, wep_meta )
 
-    local ply = wunwrap( self )
-    checkPlyCorePerms( instance, ply, "setClip2", amount )
+    local wep = wunwrap( self )
+    checkPlyCorePerms( instance, wep, "setClip2", amount )
 
-    ply:SetClip2( amount )
+    wep:SetClip2( amount )
 end
 
 end
